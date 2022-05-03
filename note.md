@@ -51,3 +51,21 @@ Delete container and run under.
 
 
 After this command you don’t have to rebuild image and container! Amazing!
+
+
+
+
+
+For nginx frist of all need add docker-composer.yml
+
+```yml
+nginx:
+  image: nginx:latest
+  container_name: nginx-container
+  ports:
+    - 80:80
+```
+
+after config all, have to rebuild same as before. Delete all the container and image and RUN:
+
+` docker-compose up -d`
