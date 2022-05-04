@@ -69,3 +69,87 @@ nginx:
 after config all, have to rebuild same as before. Delete all the container and image and RUN:
 
 ` docker-compose up -d`
+
+Here is the thing, we need put php mysql as well as nginx in same container that all software can running together.
+
+So in total there is 5 container which is app-data-container, mysql-data-container, mysql-container, php-container, nginx-container.
+
+Except two data-container, other container will running.
+
+
+
+Then we can run mysql CLI
+
+` docker exec -it mysql-container /bin/bash`
+
+
+
+` $ ls`
+
+List all data
+
+` $ pwd`
+
+Print derictuy
+
+` $ uname -or`
+
+Show system info
+
+` cd /var/lib/mysql`
+
+Go to mysql folder directory
+
+
+
+// In root directory type
+
+` $ mysql -ujason -ppassword`
+
+then you can do mysql CLI
+
+` $ show databases;`
+
+` $ use nginx_db`
+
+Then you can do mysql CLI
+
+
+
+after that have to quit
+
+` $ \q`
+
+quit mysql
+
+` $ exit`
+
+quit mysql-container
+
+Quite
+
+
+
+
+
+then 
+
+` $ docker inspect mysql-data-container`
+
+Show all the info
+
+` $ docker volume ls`
+
+Show all the volume
+
+` $ docker volume ls -qf dangling=true `
+
+show the one dangling
+
+and what is dangling volume?
+
+Since the point of volumes is to exist independent from containers, when a container is removed, a volume is not automatically removed at the same time. **When a volume exists and is no longer connected to any containers**, it's called a dangling volume.
+
+` $docker volume prune`
+
+Remove all unused local volumes. Unused local volumes are those which are not referenced by any containers
